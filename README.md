@@ -27,3 +27,7 @@ p.publish_event("user_created".to_owned(), …);
 
 #### Karena kedua aplikasi (publisher dan subscriber) menggunakan URI yang identik, mereka berbicara pada broker yang sama. Ini memungkinkan publisher mengirim pesan ke antrian/exchange tertentu, lalu subscriber bisa “mendengarkan” dan memproses pesan‑pesan itu dari broker yang sama pula. Dengan kata lain, mereka terhubung ke pintu masuk (port) dan akun yang sama pada broker, sehingga pesan bisa berpindah dari satu program ke program lain lewat RabbitMQ.
 
+### 3. Running RabbitMQ as message broker
+![image](https://github.com/user-attachments/assets/25f6f4de-6eb2-437c-b526-42b4fa338783)
+
+
