@@ -30,4 +30,8 @@ p.publish_event("user_created".to_owned(), …);
 ### 3. Running RabbitMQ as message broker
 ![image](https://github.com/user-attachments/assets/25f6f4de-6eb2-437c-b526-42b4fa338783)
 
+### 4. Sending and processing event
+![image](https://github.com/user-attachments/assets/fcc3904d-5521-47ce-a019-3b098ff550e4)
+![image](https://github.com/user-attachments/assets/c0a5207a-cd6f-4b0c-af35-96b4414f105a)
+#### Saat program publisher dijalankan, ia membuat koneksi ke broker RabbitMQ di `localhost:5672` menggunakan kredensial `guest:guest` lalu mengemas lima buah objek `UserCreatedEventMessage` dengan data `user_id` dan `user_name` ke dalam format byte melalui Borsh dan mengirimkannya satu per satu ke broker dengan topik `"user_created"`. Broker kemudian menempatkan kelima pesan tersebut ke dalam antrean sesuai properti yang telah ditentukan. Di sisi listener, program membuka koneksi yang sama ke broker dan mendaftar `UserCreatedHandler` untuk topik `"user_created"`, kemudian memasuki loop yang terus-menerus menunggu kedatangan pesan. Ketika broker mengirim salah satu dari kelima pesan tersebut, library `crosstown_bus` otomatis melakukan deserialisasi byte stream menjadi struct `UserCreatedEventMessage` dan memanggil metode `handle` pada `UserCreatedHandler`, di mana data pesan tersebut ditampilkan lewat `println!` sebelum handler mengembalikan hasil sukses. Dengan cara ini, publisher dan subscriber berjalan terpisah sehingga pengiriman dan pemrosesan pesan dapat dilakukan secara asinkron.
 
