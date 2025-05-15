@@ -22,8 +22,7 @@ UserCreatedHandler {
 }
 
 fn main() {
-    let mut p = CrosstownBus::new_queue_publisher("amqp://guest:guest@localhost:56
-   72".to_owned()).unwrap();
+    let mut p = CrosstownBus::new_queue_publisher("amqp://guest:guest@localhost:5672".to_owned()).unwrap();
     _ = p.publish_event("user_created".to_owned(),
    UserCreatedEventMessage { user_id: "1".to_owned(), user_name:
    "2306152134-Amir".to_owned() });
